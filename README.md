@@ -10,6 +10,7 @@ So let's check out how good sql dbs help us with such a problem
 
 spin up the docker postgress via:
  `docker run --name my-postgres -e POSTGRES_PASSWORD=mysecretpassword -d -p 5432:5432 postgres`
+
 the connection string should be like:
  `postgresql://postgres:mysecretpassword@localhost:5432/postgres?sslmode=disable`
 
@@ -48,7 +49,7 @@ created_at: The name of the fifth column, intended to store the timestamp when t
 TIMESTAMP WITH TIME ZONE: This data type stores both a timestamp and a time zone, allowing for the precise tracking of when an event occurred, regardless of the user's or server's time zone.
 DEFAULT CURRENT_TIMESTAMP: This default value automatically sets the created_at column to the date and time at which the row is inserted into the table, using the current timestamp of the database server.
 
-This is how some CRUD commands would look like in play:
+### This is how some CRUD commands would look like in play:
 1. INSERT
 INSERT INTO users (username, email, password)
 VALUES ('username_here', 'user@example.com', 'user_password');
@@ -118,3 +119,18 @@ async function createUsersTable() {
 
 createUsersTable();
 ```
+
+We're not gonna be a cry baby here and use typsecript for implmentaion code.
+```
+npm init -y
+npx tsc --init
+```
+
+### Change the rootDir and outDir in tsconfig.json
+"rootDir": "./src",
+"outDir": "./dist",
+Install the pg library and it’s types (because we’re using TS)
+```
+npm install pg
+npm install @types/pg```
+
